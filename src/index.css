@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* For Footer section */
+.listContainer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.8s ease-in-out;
+}
+.listContainer.open {
+  max-height: 300px;
+}
+/* End For Faq section */
+/* For TrendCategories section */
+.trendCategories .slick-slider.slick-initialized {
+  width: 1240px;
+  margin: 0 auto;
+}
+.trendCategories .slick-initialized .slick-slide + div > div > div {
+  width: max-content !important;
+}
+.trendCategories .slick-slider .slick-track,
+.trendCategories .slick-slider .slick-list {
+  display: flex;
+}
+/* End For TrendCategories section */
+.box {
+  background: rgb(0, 175, 239);
+  width: 12px;
+  height: 12px;
+  position: relative;
+}
+.box::before {
+  transform: rotate(60deg);
+}
+.box::before,
+.box::after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 12px;
+  width: 12px;
+  background: rgb(0, 175, 239);
+}
+.box-inside {
+  margin: 20px;
+  width: 4px;
+  height: 10px;
+  border-left: 2px solid rgb(255, 255, 255);
+  position: absolute;
+  transform: rotate(-125deg);
+  top: -20px;
+  left: -15px;
+  z-index: 1;
+}
+.box::after {
+  transform: rotate(30deg);
+}
+.box-inside::before {
+  content: "";
+  background: rgb(255, 255, 255);
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  height: 45%;
+  width: 2px;
+  top: -2px;
+  transform: rotate(89deg);
+  border-left: 2px solid rgb(255, 255, 255);
+}
