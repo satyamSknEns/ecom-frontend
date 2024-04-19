@@ -4,24 +4,24 @@ import { Link } from "react-router-dom";
 const MenuList = () => {
   const list = [
     {
-      title: "Top Stores",
-      path: "/top-stores",
+      title: "Top Products",
+      path: "/",
     },
     {
-      title: "Categories",
-      path: "/categories",
+      title: "Collection",
+      path: "/collection",
     },
     {
-      title: "Top20",
-      path: "/top20",
+      title: "Best Deals",
+      path: "/",
     },
     {
-      title: "Exclusive",
-      path: "/exclusive",
+      title: "New Arrivals",
+      path: "/",
     },
     {
-      title: "The Gateway Hotels and Resorts",
-      path: "/gateway",
+      title: "Blog",
+      path: "/",
     },
   ];
   return (
