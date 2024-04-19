@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { userToken } from "../config/config";
+import { endpoint } from "../config/config";
 import Loader from "./loader";
 const Collection = () => {
   const [product, setProduct] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  console.log('endpoint',endpoint);
 
   useEffect(() => {
     const getAllProducts = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:8081/products`, {
+        const { data } = await axios.get(`${endpoint.baseUrl}/products`, {
           headers: {
-            Authorization: `Bearer ${userToken}`,
+            Authorization: `Bearer ${endpoint.userToken}`,
           },
         });
         if (data) {
@@ -32,7 +33,7 @@ const Collection = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <section className="p-8">
+        <section className="p-8 mb-8">
           <div className="flex flex-wrap mx-auto w-full justify-center">
             {product.map((items) => (
               <div

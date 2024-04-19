@@ -1,10 +1,11 @@
 import React from "react";
 import MenuList from "./menuList";
+import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <header>
       <div className="flex items-center justify-between px-8 py-3">
-        <div className="flex items-center justify-center w-[30%] cursor-pointer">
+        <Link to="/" className="flex items-center justify-center w-[30%] cursor-pointer">
           <span className="mr-2 hidden">
             <svg
               width="48"
@@ -28,7 +29,7 @@ const Header = () => {
             alt="logo"
             className="-mb-2"
           />
-        </div>
+        </Link>
         <div className="p-2 flex items-center justify-center my-2 rounded bg-[#F3F9FB] w-[40%]">
           <div className="p-2 flex items-center justify-center">
             <svg

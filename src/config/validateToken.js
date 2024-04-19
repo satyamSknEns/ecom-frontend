@@ -1,10 +1,10 @@
 import axios from "axios";
-import { baseUrl } from "./config";
+import { endpoint } from "./config";
 
 export const validateToken = async (token) => {
   try {
     const response = await axios.post(
-      `${baseUrl}/users/verify`,
+      `${endpoint.baseUrl}/users/verify`,
       { token: token },
       {
         headers: {
