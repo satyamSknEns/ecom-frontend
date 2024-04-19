@@ -38,20 +38,22 @@ const Collection = () => {
             {product.map((items) => (
               <div
                 key={items.productId}
-                className="flex flex-col items-center justify-center w-1/5 m-3 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] rounded-xl"
+                className="flex flex-col items-center justify-center w-1/5 m-3 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] rounded-xl max-h-[440px]"
               >
-                <div className="flex items-center justify-center p-4 w-full h-[200px]">
-                  <img src={items?.thumbnail} alt={product[0]?.title} className="w-full"/>
+                <div className="flex items-center justify-center p-4 max-w-[200px] min-h-[240px] h-[250px]">
+                  <img src={items?.images[0]} alt={product[0]?.title} className="w-full h-auto"/>
                 </div>
-                <div className="flex flex-col items-center px-4 text-center">
+                <div className="flex flex-col items-center px-4 text-center max-h-[100px]">
                   <p className="text-base text-slate-800 font-medium">
                     {items?.title}
                   </p>
-                  <p className="text-base font-medium text-center text-green-700 pt-2">
-                    {items?.description}
+                  <p className="text-base font-medium flex items-start justify-start  text-green-700 pt-2">
+                  {items.description && items.description.length > 10
+                      ? `${items.description.slice(0, 40)}...`
+                      : items.description}
                   </p>
                 </div>
-                <div className="flex items-center px-4 text-slate-500 pt-2">
+                <div className="flex items-center px-4 text-slate-500 pt-2 max-h-[40px]">
                   <img
                     src="/assets/icons/star.png"
                     alt="rating"
