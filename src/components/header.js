@@ -18,16 +18,16 @@ const Header = () => {
               <path
                 d="M33.8334 15.75H13.1667M29.9584 23.5H13.1667M26.0834 31.25H13.1667"
                 stroke="white"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </span>
           <img
             src="/assets/images/logo.png"
             alt="logo"
-            className="-mb-2"
+            className="-mb-2 h-[85px]"
           />
         </Link>
         <div className="p-2 flex items-center justify-center my-2 rounded bg-[#F3F9FB] w-[40%]">
@@ -42,18 +42,18 @@ const Header = () => {
               <path
                 d="M7.74142 14.4828C11.4646 14.4828 14.4828 11.4646 14.4828 7.74142C14.4828 4.01824 11.4646 1 7.74142 1C4.01824 1 1 4.01824 1 7.74142C1 11.4646 4.01824 14.4828 7.74142 14.4828Z"
                 stroke="#6C6C6C"
-                stroke-opacity="0.99"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeOpacity="0.99"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
                 d="M12.4302 12.7803L15.0732 15.4164"
                 stroke="#6C6C6C"
-                stroke-opacity="0.99"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeOpacity="0.99"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </div>

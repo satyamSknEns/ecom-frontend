@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { endpoint } from "../config/config";
 import Loader from "./loader";
+import { Link } from "react-router-dom";
 const Collection = () => {
   const [product, setProduct] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  console.log('endpoint',endpoint);
+  console.log("endpoint", endpoint);
 
   useEffect(() => {
     const getAllProducts = async () => {
@@ -40,15 +41,22 @@ const Collection = () => {
                 key={items.productId}
                 className="flex flex-col items-center justify-center w-1/5 m-3 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] rounded-xl max-h-[440px]"
               >
-                <div className="flex items-center justify-center p-4 max-w-[200px] min-h-[240px] h-[250px]">
-                  <img src={items?.images[0]} alt={product[0]?.title} className="w-full h-auto"/>
-                </div>
+                <Link
+                  to={`/collection/${ items.category }/products/${encodeURIComponent( items.title.toLowerCase().split(" ").join("-") )}?variant=${items.productId}`}
+                  className="flex items-center justify-center p-4 max-w-[200px] min-h-[240px] h-[250px]"
+                >
+                  <img
+                    src={items?.images[0]}
+                    alt={product[0]?.title}
+                    className="w-full h-auto"
+                  />
+                </Link>
                 <div className="flex flex-col items-center px-4 text-center max-h-[100px]">
                   <p className="text-base text-slate-800 font-medium">
                     {items?.title}
                   </p>
                   <p className="text-base font-medium flex items-start justify-start  text-green-700 pt-2">
-                  {items.description && items.description.length > 10
+                    {items.description && items.description.length > 10
                       ? `${items.description.slice(0, 40)}...`
                       : items.description}
                   </p>
@@ -80,19 +88,20 @@ const Collection = () => {
                       100
                     ).toFixed()}
                   </p>
-                  {(items?.discountPercentage !==0 && items?.discountPercentage > 0) && (
-                    <>
-                      <p className="text-xl font-medium text-slate-400 ml-2 line-through decoration-slate-400">
-                        <span className="text-[21px] mr-1 font-bold">₹</span>
-                        {items?.price}
-                      </p>
-                      <p className="m-1 bg-green-400 text-base rounded font-medium">
-                        <span className="p-2">
-                          {items?.discountPercentage.toFixed()}% off
-                        </span>
-                      </p>
-                    </>
-                  )}
+                  {items?.discountPercentage !== 0 &&
+                    items?.discountPercentage > 0 && (
+                      <>
+                        <p className="text-xl font-medium text-slate-400 ml-2 line-through decoration-slate-400">
+                          <span className="text-[21px] mr-1 font-bold">₹</span>
+                          {items?.price}
+                        </p>
+                        <p className="m-1 bg-green-400 text-base rounded font-medium">
+                          <span className="p-2">
+                            {items?.discountPercentage.toFixed()}% off
+                          </span>
+                        </p>
+                      </>
+                    )}
                 </div>
               </div>
             ))}
