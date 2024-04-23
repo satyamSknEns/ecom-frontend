@@ -37,7 +37,7 @@ const Product = () => {
     getAllProducts();
   }, [id]);
   console.log("products", product);
-  
+
   return (
     <>
       {isLoading ? (
@@ -46,7 +46,10 @@ const Product = () => {
         <section className="p-8">
           <div className="flex items-center justify-between">
             <div className="w-1/2">
-              <img src={product?.images[0]} alt={product?.title} />
+              <div className="flex">
+                <img src={product?.images[0]} alt={product?.title} />
+              </div>
+              <div className="flex"></div>
             </div>
             <div className="w-1/2">
               <div className="h2">{product?.title}</div>
