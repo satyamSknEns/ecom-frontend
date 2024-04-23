@@ -2,33 +2,56 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { endpoint } from "../config/config";
 import Loader from "./loader";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 const Collection = () => {
   const [product, setProduct] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  console.log("endpoint", endpoint);
+  const location = useLocation();
+  const paths = location.pathname.split("/").filter((path) => path !== "");
+  const [collectionName, setCollectionName] = useState(paths[1]);
+  console.log("collectionName", collectionName);
+  console.log("paths", location.pathname);
 
   useEffect(() => {
     const getAllProducts = async () => {
+      setIsLoading(true);
       try {
-        const { data } = await axios.get(`${endpoint.baseUrl}/products`, {
-          headers: {
-            Authorization: `Bearer ${endpoint.userToken}`,
-          },
-        });
+        let data;
+        if (collectionName === "all") {
+          data = await axios.get(`${endpoint.baseUrl}/products`, {
+            headers: {
+              Authorization: `Bearer ${endpoint.userToken}`,
+            },
+          });
+        } else {
+          data = await axios.get(
+            `http://localhost:8081/products/getcollection?category=${collectionName}`,
+            {
+              headers: {
+                Authorization: `Bearer ${endpoint.userToken}`,
+              },
+            }
+          );
+        }
+        console.log("collectionData", data);
         if (data) {
-          setProduct(data.data);
+          setProduct(data.data.data);
           setIsLoading(false);
         }
       } catch (error) {
-        console.error("Error fetching user data:", error);
+        console.error("Error fetching collection data:", error);
+        setIsLoading(false);
       } finally {
         setIsLoading(false);
       }
     };
     getAllProducts();
-  }, []);
+  }, [collectionName]);
+  useEffect(() => {
+    setCollectionName(paths[1])
+  }, [paths,location.pathname]);
   console.log("products", product);
+  console.log("location.pathname", location.pathname);
   return (
     <>
       {isLoading ? (
@@ -42,7 +65,11 @@ const Collection = () => {
                 className="flex flex-col items-center justify-center w-1/5 m-3 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] rounded-xl max-h-[440px]"
               >
                 <Link
-                  to={`/collection/${ items.category }/products/${encodeURIComponent( items.title.toLowerCase().split(" ").join("-") )}?variant=${items.productId}`}
+                  to={`/collections/${
+                    items.category
+                  }/products/${encodeURIComponent(
+                    items.title.toLowerCase().split(" ").join("-")
+                  )}?variant=${items.productId}`}
                   className="flex items-center justify-center p-4 max-w-[200px] min-h-[240px] h-[250px]"
                 >
                   <img
