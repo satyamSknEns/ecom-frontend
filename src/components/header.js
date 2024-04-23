@@ -1,11 +1,46 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import MenuList from "./menuList";
 import { Link } from "react-router-dom";
 const Header = () => {
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [topHeader, setTopHeader] = useState(0);
+  const [isMenuDynamic, setIsMenuDynamic] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const position = window.scrollY;
+      setScrollPosition(position);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    const headerTop = document.querySelector(".headerContent");
+    if (headerTop) {
+      setTopHeader(headerTop.offsetHeight);
+    }
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (scrollPosition >= topHeader) {
+      setIsMenuDynamic(true);
+    } else {
+      setIsMenuDynamic(false);
+    }
+  }, [scrollPosition, topHeader]);
+  console.log("scrollPosition", scrollPosition);
+  console.log("topHeader", topHeader);
+
   return (
     <header>
-      <div className="flex items-center justify-between px-8 py-3">
-        <Link to="/" className="flex items-center justify-center w-[30%] cursor-pointer">
+      <div className="flex items-center justify-between px-8 py-3 headerContent">
+        <Link
+          to="/"
+          className="flex items-center justify-center w-[30%] cursor-pointer"
+        >
           <span className="mr-2 hidden">
             <svg
               width="48"
@@ -75,7 +110,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <MenuList />
+      <MenuList isDynamic={isMenuDynamic} />
     </header>
   );
 };

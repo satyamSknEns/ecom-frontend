@@ -3,6 +3,7 @@ import React from "react";
 const OurCustomers = () => {
   const list = [
     {
+      id:1,
       title: "Megha Sarpal",
       role: "IT Consultant (based in USA)",
       imgUrl: "/assets/images/customers/1.png",
@@ -11,6 +12,7 @@ const OurCustomers = () => {
       ratings: "5",
     },
     {
+      id:2,
       title: "Megha Sarpal",
       role: "IT Consultant (based in USA)",
       imgUrl: "/assets/images/customers/1.png",
@@ -19,6 +21,7 @@ const OurCustomers = () => {
       ratings: "5",
     },
     {
+      id:3,
       title: "Megha Sarpal",
       role: "IT Consultant (based in USA)",
       imgUrl: "/assets/images/customers/1.png",
@@ -34,7 +37,7 @@ const OurCustomers = () => {
       </div>
       <div className="flex">
         {list.map((item)=>(
-            <div className="flex">
+            <div key={item.id} className="flex">
 
             </div>
         ))}
