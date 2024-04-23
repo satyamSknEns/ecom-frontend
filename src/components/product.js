@@ -16,15 +16,14 @@ const Product = () => {
     const getAllProducts = async () => {
       try {
         const { data } = await axios.get(
-            // ${endpoint.baseUrl}/products/getproduct?productId=${id}
-          `http://localhost:8081/products/getproduct?productId=${id}`,
+          // ${endpoint.baseUrl}/products/getproduct?productId=${id}
+          `${endpoint.baseUrl}/products/getproduct?productId=${id}`,
           {
             headers: {
               Authorization: `Bearer ${endpoint.userToken}`,
             },
           }
         );
-        console.log("data", data);
         if (data) {
           setProduct(data);
           setIsLoading(false);
@@ -38,7 +37,7 @@ const Product = () => {
     getAllProducts();
   }, [id]);
   console.log("products", product);
-  console.log(`_____${endpoint.baseUrl}/products/getproduct?productId=${id}`);
+  
   return (
     <>
       {isLoading ? (
@@ -53,28 +52,28 @@ const Product = () => {
               <div className="h2">{product?.title}</div>
               <p>{product?.description}</p>
               <div className="flex items-center justify-center py-2">
-                  <p className="text-xl font-medium">
-                    <span className="text-[21px] mr-1 font-bold">₹</span>
-                    {(
-                      (product?.price * (100 - product?.discountPercentage)) /
-                      100
-                    ).toFixed()}
-                  </p>
-                  {product?.discountPercentage !== 0 &&
-                    product?.discountPercentage > 0 && (
-                      <>
-                        <p className="text-xl font-medium text-slate-400 ml-2 line-through decoration-slate-400">
-                          <span className="text-[21px] mr-1 font-bold">₹</span>
-                          {product?.price}
-                        </p>
-                        <p className="m-1 bg-green-400 text-base rounded font-medium">
-                          <span className="p-2">
-                            {product?.discountPercentage.toFixed()}% off
-                          </span>
-                        </p>
-                      </>
-                    )}
-                </div>
+                <p className="text-xl font-medium">
+                  <span className="text-[21px] mr-1 font-bold">₹</span>
+                  {(
+                    (product?.price * (100 - product?.discountPercentage)) /
+                    100
+                  ).toFixed()}
+                </p>
+                {product?.discountPercentage !== 0 &&
+                  product?.discountPercentage > 0 && (
+                    <>
+                      <p className="text-xl font-medium text-slate-400 ml-2 line-through decoration-slate-400">
+                        <span className="text-[21px] mr-1 font-bold">₹</span>
+                        {product?.price}
+                      </p>
+                      <p className="m-1 bg-green-400 text-base rounded font-medium">
+                        <span className="p-2">
+                          {product?.discountPercentage.toFixed()}% off
+                        </span>
+                      </p>
+                    </>
+                  )}
+              </div>
             </div>
           </div>
         </section>
