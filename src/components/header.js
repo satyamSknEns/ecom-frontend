@@ -31,8 +31,8 @@ const Header = () => {
       setIsMenuDynamic(false);
     }
   }, [scrollPosition, topHeader]);
-  console.log("scrollPosition", scrollPosition);
-  console.log("topHeader", topHeader);
+  // console.log("scrollPosition", scrollPosition);
+  // console.log("topHeader", topHeader);
 
   return (
     <header>
